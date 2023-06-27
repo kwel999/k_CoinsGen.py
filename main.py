@@ -1,4 +1,7 @@
-community_link = "http://aminoapps.com/c/Heaven_999"
+community_link = "http://aminoapps.com/c/Anime-Worlds"
+
+#proxies = {'http': 'socks5://212.156.216.185:8111','https':'socks5://212.156.216.185:8111'}
+
 
 import concurrent.futures
 from os import system, sys
@@ -32,26 +35,20 @@ for x in animation:
 	print(Fore.CYAN + x, end ='')
 	sys.stdout.flush()
 	sleep(0.008)
-
 import os, json, time
 import concurrent.futures
 from os import system, sys
 from time import sleep
 import threading
 from colorama import Fore
-from k_amino import(
-Client,
-SubClient
-)
 
 try:
     import k_amino, pyfiglet
 except:
-    os.system('pip install k_amino==1.0.8')
+    os.system('pip install k_amino.py')
     os.system('pip install pyfiglet')
-    os.system("pip install easy_events")
-    os.system("pip install flask")
-    import k_amino, pyfiglet
+    os.system('pip install flask')
+    import k_amino, pyfiglet,flask
 else:
     os.system('clear')
     A = '\x1b[1;91m'
@@ -63,7 +60,91 @@ else:
     Y = '\x1b[1;34m'
     M = '\x1b[1;94m'
 
+  
 
+
+    def tzr():
+        localhour = time.strftime('%H', time.gmtime())
+        localminute = time.strftime('%M', time.gmtime())
+        UTC = {'GMT0':'+0',  'GMT1':'+60',  'GMT2':'+120',  'GMT3':'+180',  'GMT4':'+240',  'GMT5':'+300',  'GMT6':'+360',  'GMT7':'+420',  'GMT8':'+480',  'GMT9':'+540',  'GMT10':'+600',  'GMT11':'+660',  'GMT12':'+720',  'GMT13':'+780',  'GMT-1':'-60',  'GMT-2':'-120',  'GMT-3':'-180',  'GMT-4':'-240',  'GMT-5':'-300',  'GMT-6':'-360',  'GMT-7':'-420',  'GMT-8':'-480',  'GMT-9':'-540',  'GMT-10':'-600',  'GMT-11':'-660'}
+        hour = [
+         localhour, localminute]
+        if hour[0] == '00':
+            tz = UTC['GMT-1']
+            return int(tz)
+        if hour[0] == '01':
+            tz = UTC['GMT-2']
+            return int(tz)
+        if hour[0] == '02':
+            tz = UTC['GMT-3']
+            return int(tz)
+        if hour[0] == '03':
+            tz = UTC['GMT-4']
+            return int(tz)
+        if hour[0] == '04':
+            tz = UTC['GMT-5']
+            return int(tz)
+        if hour[0] == '05':
+            tz = UTC['GMT-6']
+            return int(tz)
+        if hour[0] == '06':
+            tz = UTC['GMT-7']
+            return int(tz)
+        if hour[0] == '07':
+            tz = UTC['GMT-8']
+            return int(tz)
+        if hour[0] == '08':
+            tz = UTC['GMT-9']
+            return int(tz)
+        if hour[0] == '09':
+            tz = UTC['GMT-10']
+            return int(tz)
+        if hour[0] == '10':
+            tz = UTC['GMT13']
+            return int(tz)
+        if hour[0] == '11':
+            tz = UTC['GMT12']
+            return int(tz)
+        if hour[0] == '12':
+            tz = UTC['GMT11']
+            return int(tz)
+        if hour[0] == '13':
+            tz = UTC['GMT10']
+            return int(tz)
+        if hour[0] == '14':
+            tz = UTC['GMT9']
+            return int(tz)
+        if hour[0] == '15':
+            tz = UTC['GMT8']
+            return int(tz)
+        if hour[0] == '16':
+            tz = UTC['GMT7']
+            return int(tz)
+        if hour[0] == '17':
+            tz = UTC['GMT6']
+            return int(tz)
+        if hour[0] == '18':
+            tz = UTC['GMT5']
+            return int(tz)
+        if hour[0] == '19':
+            tz = UTC['GMT4']
+            return int(tz)
+        if hour[0] == '20':
+            tz = UTC['GMT3']
+            return int(tz)
+        if hour[0] == '21':
+            tz = UTC['GMT2']
+            return int(tz)
+        if hour[0] == '22':
+            tz = UTC['GMT1']
+            return int(tz)
+        if hour[0] == '23':
+            tz = UTC['GMT0']
+            return int(tz)
+
+
+    def trr():
+        return [{'start':int(time.time()),  'end':int(time.time() + 300)} for _ in range(50)]
 
 
     from flask import Flask
@@ -86,7 +167,7 @@ else:
 
 
     keep_alive()
-    client = Client()
+    client = k_amino.Client()
     from_info = client.get_from_link(community_link)
     from_id = from_info.comId
     file = open('accounts.json')
@@ -95,18 +176,16 @@ else:
     def threadit(email: str, password: str, device: str):
         try:
             client.login(email, password)
-            print(H + '\nlogged in to -',email)
-            #time.sleep(1)
+            time.sleep(10)
             client.join_community(comId=from_id)
-            #time.sleep(4)  #use time if you need <=
-            print(H + '\n Joined Community -', email)
             from_client = SubClient(comId=from_id)
-            for i in range(24):
-                from_client.send_active_time()
-                print(A + f"{i + 1} Coin Generating - OK")
-                time.sleep(9)
+            print(H + '\nlogin done')
+            for q in range(24):
+                local.send_active_time(tz=(tzr()), timers=(trr()))
+                print(A + f"{q + 1} Coin Generating - OK")
+                time.sleep(30)
             else:
-                print(H + '\nCoins Genarated !! from - ',email)
+                print(H + '\nCoins Genarated !! ')
 
         except Exception as e:
             try:
@@ -120,7 +199,7 @@ else:
         for acc in date:
             email = acc['email']
             password = acc['password']
-            device = acc['deviceId']
+            device = acc['device']
             threadit(email=email, password=password, device=device)
 
 
