@@ -1,8 +1,11 @@
-community_link = "http://aminoapps.com/c/Anime-Worlds"
+community_link = "http://aminoapps.com/c/NamoroAmino"
 
 #proxies = {'http': 'socks5://212.156.216.185:8111','https':'socks5://212.156.216.185:8111'}
 
-
+from k_amino import(
+Client,
+SubClient
+)
 import concurrent.futures
 from os import system, sys
 from time import sleep
@@ -176,12 +179,13 @@ else:
     def threadit(email: str, password: str, device: str):
         try:
             client.login(email, password)
+            print(H + '\nlogged to k_amino.py with ',email)
             time.sleep(10)
             client.join_community(comId=from_id)
+            print(H + '\nJoined ',community_link)
             from_client = SubClient(comId=from_id)
-            print(H + '\nlogin done')
             for q in range(24):
-                local.send_active_time(tz=(tzr()), timers=(trr()))
+                from_client.send_active_time(tz=(tzr()), timers=(trr()))
                 print(A + f"{q + 1} Coin Generating - OK")
                 time.sleep(30)
             else:
