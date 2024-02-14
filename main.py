@@ -183,7 +183,7 @@ else:
             time.sleep(10)
             client.join_community(comId=from_id)
             print(H + '\nJoined ',community_link)
-            from_client = SubClient(comId=from_id)
+            from_client = SubClient(comId=from_id,client=client)
             for q in range(24):
                 from_client.send_active_time(tz=(tzr()), timers=(trr()))
                 print(A + f"{q + 1} Coin Generating - OK")
